@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ToDoList } from './components/ToDoList';
 import { AddToDo } from './components/AddToDo';
 
 function App() {
-  const todos: Array<Todo> = [
+  const initialTodos: Array<Todo> = [
     { text: 'Learn how to use TypeScript' },
     { text: 'Finish Node website' },
   ];
+  const [todos, setTodos] = useState(initialTodos);
+
+  const addTodo: AddTodo = (newTodo) => {
+    newTodo.trim() !== '' && setTodos([...todos, { text: newTodo }]);
+  };
 
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>ToDo with TS</h1>
+        <h1>Todo list with Typescript</h1>
       </header>
       <main>
         <section>
-          <AddToDo />
+          <AddToDo addTodo={addTodo} />
           <ToDoList todos={todos} />
         </section>
       </main>
