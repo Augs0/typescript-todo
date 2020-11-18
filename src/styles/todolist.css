@@ -1,6 +1,71 @@
 ul {
   list-style: none;
 }
+
+li {
+  font-size: 1.5rem;
+  margin: 15px;
+}
+
+/*  Accessible checkboxes https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3*/
+
+.checkItem input[type='checkbox'] {
+  opacity: 0;
+}
+
+.checkItem label {
+  position: relative;
+}
+
+.checkItem label::before {
+  content: '';
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 2px solid;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  top: 12px;
+  left: -26px;
+}
+
+.checkItem label::after {
+  content: '';
+  display: inline-block;
+  height: 6px;
+  width: 15px;
+  border-left: 2px solid;
+  border-bottom: 2px solid;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  left: -22px;
+  top: 16px;
+}
+
+.checkItem label::before,
+.checkItem label::after {
+  position: absolute;
+}
+
+.checkItem input[type='checkbox'] + label::after {
+  content: none;
+}
+/*Unhide the checkmark on the checked state*/
+.checkItem input[type='checkbox']:checked + label::after {
+  content: '';
+}
+
+/*Adding focus styles on the outer-box of the fake checkbox*/
+.checkItem input[type='checkbox']:focus + label::before {
+  outline: rgb(59, 153, 252) auto 5px;
+}
+
 .complete {
   text-decoration: line-through;
 }
